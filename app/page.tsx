@@ -84,7 +84,8 @@ export default function Home() {
           animation: wa-bounce-in .7s cubic-bezier(.34,1.56,.64,1) 1.2s both,
                      wa-pulse 2.4s ease-in-out 2s infinite;
         }
-        .wa-fab:hover { animation: wa-ring .6s ease; transform:scale(1.1); }
+        .wa-fab:hover { transform:scale(1.1); }
+        .wa-fab:hover svg { animation: wa-ring .6s ease; }
 
         /* Tooltip slide-in */
         @keyframes tooltip-in {
@@ -133,10 +134,10 @@ export default function Home() {
       {/* ══════════════════════════════════
           WHATSAPP FAB
       ══════════════════════════════════ */}
-      <div className="fixed bottom-7 right-7 z-[300] flex flex-col items-end gap-3">
+      <div className="fixed bottom-7 right-7 z-[300]">
         {/* Tooltip */}
         {waTooltip && (
-          <div className="wa-tooltip rounded bg-white text-[#2A1A1A] text-sm f-dm font-medium px-4 py-2 shadow-xl border border-gray-100 whitespace-nowrap">
+          <div className="wa-tooltip pointer-events-none absolute right-0 bottom-full mb-3 rounded bg-white text-[#2A1A1A] text-sm f-dm font-medium px-4 py-2 shadow-xl border border-gray-100 whitespace-nowrap">
             Chat with us on WhatsApp
           </div>
         )}
@@ -159,17 +160,17 @@ export default function Home() {
       {/* ══════════════════════════════════
           NAVBAR
       ══════════════════════════════════ */}
-      <nav className={`fixed top-0 inset-x-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-10 transition-all duration-300 border-b ${scrolled ? "bg-white/95 shadow-sm border-[#f0e0d0]" : "bg-white border-[#f5ede6]"}`}>
+      <nav className={`fixed top-4  rounded-lg shadow-[0_4px_20px_rgba(0,0,0,0.25)] left-5 right-5 inset-x-0 z-50 h-[72px] flex items-center justify-between px-6 md:px-10 transition-all duration-300 border-b ${scrolled ? "bg-white shadow-sm border-[#f0e0d0]" : "bg-white border-[#f5ede6]"}`}>
         <div className="flex items-center gap-3">
-          <span className="f-play font-black text-[1.4rem] text-[#4A0E0E] tracking-tight">DEZINE</span>
+          <span className="f-play font-black text-[24px] text-[#4A0E0E] tracking-tight">DEZINE</span>
           <span className="w-px h-5 bg-[#C9922A] opacity-60" />
-          <span className="f-corm text-[1.05rem] text-[#C9922A] font-semibold tracking-[.15em]">Acharya</span>
+          <span className="f-corm text-[18px] text-[#C9922A] font-semibold tracking-[.15em]">Acharya</span>
         </div>
 
         <div className="hidden md:flex items-center gap-10">
           {["About","Exams","Approach","Community"].map(item => (
             <a key={item} href={`#${item.toLowerCase()}`}
-               className="nav-ul f-dm text-[.82rem] font-medium tracking-[.12em] uppercase text-[#6B1A1A] hover:text-[#C9922A] transition-colors duration-300 no-underline">
+               className="nav-ul f-dm text-[14px] font-medium tracking-[.12em] uppercase text-[#6B1A1A] hover:text-[#C9922A] transition-colors duration-300 no-underline">
               {item}
             </a>
           ))}
