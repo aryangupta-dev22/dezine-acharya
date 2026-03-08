@@ -7,11 +7,61 @@ import { Brain, DraftingCompass, Lightbulb, Mail, MapPin, Palette, Phone, Shirt,
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [statCounts, setStatCounts] = useState({
+    aspirants: 0,
+    exams: 0,
+    years: 0,
+  });
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const target = document.getElementById("hero-stats");
+    if (!target) return;
+
+    let started = false;
+    let rafId = 0;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || started) return;
+        started = true;
+
+        const duration = 1400;
+        const start = performance.now();
+        const max = { aspirants: 100000, exams: 4, years: 12 };
+
+        const tick = (now: number) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          setStatCounts({
+            aspirants: Math.round(max.aspirants * eased),
+            exams: Math.round(max.exams * eased),
+            years: Math.round(max.years * eased),
+          });
+
+          if (progress < 1) {
+            rafId = requestAnimationFrame(tick);
+          }
+        };
+
+        rafId = requestAnimationFrame(tick);
+        observer.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(target);
+
+    return () => {
+      observer.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -36,9 +86,9 @@ export default function Home() {
           };
         }
       ).AOS?.init({
-        duration: 750,
+        duration: 550,
         easing: "ease-out-cubic",
-        offset: 60,
+        offset: 10,
         once: false,
       });
     };
@@ -177,9 +227,9 @@ export default function Home() {
       </div>
 
       {/* Ã¢â€â‚¬Ã¢â€â‚¬ Navbar Ã¢â€â‚¬Ã¢â€â‚¬ */}
-      <nav className={`fixed top-3 left-4 right-4 z-50 h-[68px] flex items-center justify-between px-6 md:px-10 bg-white/95 backdrop-blur-md  border-[#f0e0d0] rounded-xl transition-all duration-300 ${scrolled ? "shadow-lg " : "shadow-[0_4px_20px_rgba(0,0,0,0.25)]"}`}>
+      <nav className={`fixed top-3 left-4 right-4 z-50 h-[60px] md:h-[68px] flex items-center justify-between px-6 md:px-10 bg-white/95 backdrop-blur-md  border-[#f0e0d0] rounded-xl transition-all duration-300 ${scrolled ? "shadow-lg " : "shadow-[0_4px_20px_rgba(0,0,0,0.25)]"}`}>
         <a href="#hero">
-          <Image src="/logo-new.webp" alt="Dezine Acharya" width={90} height={44} className=" w-auto object-contain" priority/>
+          <Image src="/logo-new.webp" alt="Dezine Acharya" width={90} height={44} className="w-[100px] md:w-[120px] object-contain" priority/>
         </a>
         <div className="hidden lg:flex items-center gap-9">
           {[["#about","About"],["#exams","Exams"],["#mentor","Mentor"],["#parents","For Parents"],["#community","Community"]].map(([href,label])=>(
@@ -204,33 +254,37 @@ export default function Home() {
       </div>
 
       {/* HERO */}
-      <section id="hero" className="min-h-screen flex items-center pt-[72px] relative overflow-hidden bg-gradient-to-br from-white via-white to-[#FDF6EC]">
+      <section id="hero" className="min-h-screen flex items-center pt-[50px] md:pt-[72px] relative overflow-hidden bg-gradient-to-br from-white via-white to-[#FDF6EC]">
         {/* Decorative */}
         <div className="absolute right-[-6%] top-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[#FDF6EC] opacity-70 pointer-events-none float-anim"/>
         <div className="absolute right-[10%] top-[12%] w-px h-[70%] bg-gradient-to-b from-transparent via-[#C9922A] to-transparent opacity-15 pointer-events-none"/>
         <div className="absolute left-[4%] bottom-[14%] w-24 h-24 border border-[#C9922A]/20 rotate-45 pointer-events-none" data-aos="fade-in" data-aos-delay="700"/>
         <div className="absolute left-[6%] bottom-[20%] w-12 h-12 border border-[#C9922A]/15 rotate-45 pointer-events-none" data-aos="fade-in" data-aos-delay="900"/>
 
-        <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-20 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 items-center w-full relative z-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-10 py-20 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 items-center w-full relative z-10">
           {/* Left */}
-          <div>
+          <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
             <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-5" data-aos="fade-right" data-aos-delay="100">Design Education - Redefined</p>
             <h1 className="f-play font-black text-5xl md:text-[4rem] leading-[1.08] text-[#4A0E0E]" data-aos="fade-right" data-aos-delay="180">Where Design</h1>
             <h1 className="f-corm font-light italic text-5xl md:text-[4rem] leading-[1.08] text-[#C9922A] my-1" data-aos="fade-right" data-aos-delay="220">is Discovered,</h1>
             <h1 className="f-play font-black text-5xl md:text-[4rem] leading-[1.08] text-[#4A0E0E] mb-7" data-aos="fade-right" data-aos-delay="260">Not Drilled.</h1>
             <div className="shimmer-bar h-[3px] w-20 rounded-full mb-8" data-aos="fade-right" data-aos-delay="320"/>
-            <p className="f-dm text-[.97rem] leading-relaxed text-[#8A6A5A] font-light max-w-[440px] mb-10" data-aos="fade-up" data-aos-delay="360">
+            <p className="f-dm text-[.97rem] leading-relaxed text-[#8A6A5A] font-light max-w-[440px] mb-10 mx-auto lg:mx-0" data-aos="fade-up" data-aos-delay="360">
               Mentoring aspirants for{" "}<strong className="text-[#6B1A1A] font-semibold">NID, NIFT, UCEED &amp; NATA</strong>{" "}through creative intuition, structured guidance, and reflective mentorship - transforming exam pressure into a meaningful design journey.
             </p>
-            <div className="flex gap-4 flex-wrap mb-12" data-aos="fade-up" data-aos-delay="420">
+            <div className="flex gap-4 flex-wrap mb-12 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="420">
               <a href="#contact" className="f-dm text-[.8rem] tracking-[.16em] uppercase bg-[#6B1A1A] text-white px-9 py-4 hover:bg-[#4A0E0E] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 no-underline">Begin Your Journey</a>
               <a href="#approach" className="f-dm text-[.8rem] tracking-[.16em] uppercase border border-[#6B1A1A] text-[#6B1A1A] px-9 py-4 hover:bg-[#6B1A1A] hover:text-white transition-all duration-300 no-underline">Our Approach</a>
             </div>
-            <div className="flex gap-10 flex-wrap" data-aos="fade-up" data-aos-delay="500">
-              {[["1L+","Aspirants Goal"],["4","Design Exams"],["12+","Years Experience"]].map(([num,lbl])=>(
-                <div key={lbl}>
-                  <div className=" font-bold text-[3.6rem] text-[#6B1A1A] leading-none">{num}</div>
-                  <div className=" text-[.7rem] tracking-[.18em] uppercase text-[#8A6A5A] mt-1">{lbl}</div>
+            <div id="hero-stats" className="flex gap-4 sm:gap-8 lg:gap-10 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="500">
+              {[
+                [`${statCounts.aspirants.toLocaleString()}+`,"Aspirants Goal"],
+                [String(statCounts.exams),"Design Exams"],
+                [`${statCounts.years}+`,"Years Experience"],
+              ].map(([num,lbl])=>(
+                <div key={lbl} className="text-center lg:text-left">
+                  <div className="font-bold text-[2rem] sm:text-[2.8rem] md:text-[3.2rem] lg:text-[3.6rem] text-[#6B1A1A] leading-none">{num}</div>
+                  <div className="text-[.58rem] sm:text-[.64rem] md:text-[.7rem] tracking-[.18em] uppercase text-[#8A6A5A] mt-1">{lbl}</div>
                 </div>
               ))}
             </div>
@@ -261,7 +315,7 @@ export default function Home() {
       </section>
 
       {/* MENTOR */}
-      <section id="mentor" className="py-24 px-6 md:px-10 bg-white">
+      <section id="mentor" className="py-20 md:py-24 px-6 md:px-10 bg-white">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
           <div className="relative flex justify-center" data-aos="fade-right" data-aos-duration="900">
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[68%] bg-[#FDF6EC] rounded"/>
@@ -404,16 +458,16 @@ export default function Home() {
       </section>
 
       {/* PARENTS LETTER */}
-      <section id="parents" className="py-24 px-6 md:px-10 bg-[#FDF6EC]">
+      <section id="parents" className="py-24 px-4 md:px-10 bg-[#FDF6EC]">
         <div className="text-center mb-14" data-aos="fade-up">
           <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-4">A Message for Parents</p>
           <h2 className="f-play font-bold text-4xl md:text-5xl text-[#4A0E0E]">Dear Parents,</h2>
         </div>
         <div className="max-w-[820px] mx-auto" data-aos="fade-up" data-aos-delay="150" data-aos-duration="900">
-          <div className="bg-white border border-[#f0e0d0] shadow-[0_8px_48px_rgba(0,0,0,.07)] px-8 md:px-16 py-12">
+          <div className="bg-white border border-[#f0e0d0] shadow-[0_8px_48px_rgba(0,0,0,.07)] px-5 md:px-16 py-12">
             <div className="flex justify-between items-start mb-2">
               <Image src="/logo-new.webp" alt="Dezine Acharya" width={120} height={52} className=" w-auto object-contain"/>
-              <span className="f-dm text-[.8rem] text-[#C9922A] tracking-wide">www.dezineacharya.com</span>
+              {/* <span className="f-dm text-[.8rem] text-[#C9922A] tracking-wide">www.dezineacharya.com</span> */}
             </div>
             <hr className="letter-rule mb-9 mt-2"/>
             <p className="f-dm text-[1rem] font-medium text-[#2A1A1A] mb-6">Dear Parents,</p>
