@@ -1,7 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Brain, DraftingCompass, Lightbulb, Mail, MapPin, Palette, Phone, Shirt, Sparkles, Users, Wifi, Wallet, X } from "lucide-react";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -116,9 +117,50 @@ export default function Home() {
         .ft-link:hover::before { opacity:1; }
 
         .letter-rule { border:none; border-top:1.5px solid #C9922A; opacity:.35; }
-      `}</style>
 
-      {/* ── WhatsApp FAB ── */}
+        /* Contact blocks */
+        .contact-panel {
+          border-left: 3px solid #C9922A;
+          background: linear-gradient(180deg, #FFFCF8 0%, #FDF6EC 100%);
+          box-shadow: 0 8px 24px rgba(74, 14, 14, 0.08);
+        }
+        .contact-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          padding: 8px 0;
+        }
+        .contact-row + .contact-row {
+          border-top: 1px dashed rgba(201, 146, 42, 0.28);
+        }
+        .contact-ic {
+          width: 26px;
+          height: 26px;
+          border-radius: 999px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+          border: 1px solid rgba(201, 146, 42, 0.45);
+          color: #6B1A1A;
+          font-size: .82rem;
+          line-height: 1;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+        .contact-link {
+          color: #6B1A1A;
+          font-weight: 600;
+          text-decoration: none;
+          transition: color .2s ease, text-decoration-color .2s ease;
+        }
+        .contact-link:hover {
+          color: #4A0E0E;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }`}</style>
+
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ WhatsApp FAB Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="wa-wrap fixed bottom-7 right-7 z-[300] flex flex-col items-end gap-2">
         <div className="wa-tip opacity-0 pointer-events-none translate-x-2 transition-all duration-300 bg-white text-[#2A1A1A] text-sm f-dm font-medium px-4 py-2 rounded shadow-xl border border-gray-100 whitespace-nowrap">
           Chat with us on WhatsApp
@@ -134,7 +176,7 @@ export default function Home() {
         </a>
       </div>
 
-      {/* ── Navbar ── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Navbar Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <nav className={`fixed top-3 left-4 right-4 z-50 h-[68px] flex items-center justify-between px-6 md:px-10 bg-white/95 backdrop-blur-md  border-[#f0e0d0] rounded-xl transition-all duration-300 ${scrolled ? "shadow-lg " : "shadow-[0_4px_20px_rgba(0,0,0,0.25)]"}`}>
         <a href="#hero">
           <Image src="/logo-new.webp" alt="Dezine Acharya" width={90} height={44} className=" w-auto object-contain" priority/>
@@ -152,14 +194,16 @@ export default function Home() {
 
       {/* Mobile menu */}
       <div className={`fixed inset-0 z-[200] bg-white flex-col items-center justify-center gap-8 px-10 ${menuOpen?"flex":"hidden"}`}>
-        <button onClick={()=>setMenuOpen(false)} className="absolute top-5 right-6 bg-transparent border-0 text-2xl text-[#6B1A1A] cursor-pointer">✕</button>
-        {[["#about","About"],["#exams","Exams"],["#mentor","Mentor"],["#parents","For Parents"],["#community","Community"]].map(([href,label])=>(
+        <button onClick={()=>setMenuOpen(false)} className="absolute top-5 right-6 bg-transparent border-0 text-2xl text-[#6B1A1A] cursor-pointer" aria-label="Close menu">
+          <X size={24} />
+        </button>
+        {[ ["#about","About"],["#exams","Exams"],["#mentor","Mentor"],["#parents","For Parents"],["#community","Community"] ].map(([href,label])=>(
           <a key={href} href={href} onClick={()=>setMenuOpen(false)} className="f-dm text-xl tracking-[.12em] uppercase text-[#6B1A1A] no-underline">{label}</a>
         ))}
         <a href="#contact" onClick={()=>setMenuOpen(false)} className="f-dm text-[.85rem] tracking-[.15em] uppercase bg-[#6B1A1A] text-white px-10 py-3 no-underline">Enroll Now</a>
       </div>
 
-      {/* ══════════ HERO ══════════ */}
+      {/* HERO */}
       <section id="hero" className="min-h-screen flex items-center pt-[72px] relative overflow-hidden bg-gradient-to-br from-white via-white to-[#FDF6EC]">
         {/* Decorative */}
         <div className="absolute right-[-6%] top-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[#FDF6EC] opacity-70 pointer-events-none float-anim"/>
@@ -170,13 +214,13 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-20 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 items-center w-full relative z-10">
           {/* Left */}
           <div>
-            <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-5" data-aos="fade-right" data-aos-delay="100">Design Education · Redefined</p>
+            <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-5" data-aos="fade-right" data-aos-delay="100">Design Education - Redefined</p>
             <h1 className="f-play font-black text-5xl md:text-[4rem] leading-[1.08] text-[#4A0E0E]" data-aos="fade-right" data-aos-delay="180">Where Design</h1>
             <h1 className="f-corm font-light italic text-5xl md:text-[4rem] leading-[1.08] text-[#C9922A] my-1" data-aos="fade-right" data-aos-delay="220">is Discovered,</h1>
             <h1 className="f-play font-black text-5xl md:text-[4rem] leading-[1.08] text-[#4A0E0E] mb-7" data-aos="fade-right" data-aos-delay="260">Not Drilled.</h1>
             <div className="shimmer-bar h-[3px] w-20 rounded-full mb-8" data-aos="fade-right" data-aos-delay="320"/>
             <p className="f-dm text-[.97rem] leading-relaxed text-[#8A6A5A] font-light max-w-[440px] mb-10" data-aos="fade-up" data-aos-delay="360">
-              Mentoring aspirants for{" "}<strong className="text-[#6B1A1A] font-semibold">NID, NIFT, UCEED &amp; NATA</strong>{" "}through creative intuition, structured guidance, and reflective mentorship — transforming exam pressure into a meaningful design journey.
+              Mentoring aspirants for{" "}<strong className="text-[#6B1A1A] font-semibold">NID, NIFT, UCEED &amp; NATA</strong>{" "}through creative intuition, structured guidance, and reflective mentorship - transforming exam pressure into a meaningful design journey.
             </p>
             <div className="flex gap-4 flex-wrap mb-12" data-aos="fade-up" data-aos-delay="420">
               <a href="#contact" className="f-dm text-[.8rem] tracking-[.16em] uppercase bg-[#6B1A1A] text-white px-9 py-4 hover:bg-[#4A0E0E] hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 no-underline">Begin Your Journey</a>
@@ -197,7 +241,7 @@ export default function Home() {
             <div className="vision-card bg-gradient-to-br from-[#6B1A1A] to-[#4A0E0E] p-11 overflow-hidden">
               <p className="f-dm text-[.68rem] tracking-[.3em] uppercase text-[#C9922A] opacity-80 mb-6">Our Vision</p>
               <blockquote className="f-corm font-light italic text-[1.55rem] leading-relaxed text-white/90 mb-8">
-                &ldquo;To democratize design education in India — making meaningful mentorship accessible, inspiring, and free from commercial exploitation.&rdquo;
+                &ldquo;To democratize design education in India - making meaningful mentorship accessible, inspiring, and free from commercial exploitation.&rdquo;
               </blockquote>
               <div className="border-t border-[#C9922A]/25 pt-6 flex gap-3 flex-wrap">
                 {["NID","NIFT","UCEED","NATA"].map(e=>(
@@ -216,55 +260,64 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════ MENTOR ══════════ */}
+      {/* MENTOR */}
       <section id="mentor" className="py-24 px-6 md:px-10 bg-white">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
           <div className="relative flex justify-center" data-aos="fade-right" data-aos-duration="900">
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-[68%] bg-[#FDF6EC] rounded"/>
-            <Image src="/avatar.png" alt="Amit Singh – Founder" width={360} height={500} className="relative z-10 w-full max-w-[340px] drop-shadow-2xl float-anim" priority/>
+            <Image src="/avatar.png" alt="Amit Singh - Founder" width={360} height={500} className="relative z-10 w-full max-w-[340px] drop-shadow-2xl float-anim" priority/>
           </div>
           <div data-aos="fade-left" data-aos-delay="150" data-aos-duration="900">
             <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-4">Meet Your Mentor</p>
             <h2 className="f-play font-bold text-3xl md:text-[2.8rem] text-[#4A0E0E] mb-3 leading-tight">
               The Modern <em className="italic text-[#C9922A]">Dronacharya</em><br/>for Design Thinkers
             </h2>
-            <p className="f-corm italic text-[1.4rem] text-[#C9922A] mb-7">Amit Singh — Founder &amp; Lead Mentor</p>
+            <p className="f-corm italic text-[1.4rem] text-[#C9922A] mb-7">Amit Singh - Founder &amp; Lead Mentor</p>
             <p className="f-dm text-[.95rem] leading-[1.9] text-[#8A6A5A] font-light mb-4">
               An alumnus of the <strong className="text-[#6B1A1A] font-semibold">National Institute of Design (NID)</strong>, Amit brings over{" "}<strong className="text-[#6B1A1A] font-semibold">12+ years</strong> of teaching and mentoring design aspirants. His philosophy-driven approach transforms the way students perceive creativity.
             </p>
             <p className="f-dm text-[.95rem] leading-[1.9] text-[#8A6A5A] font-light mb-8">
-              At Dezine Acharya, Amit has built more than a coaching brand — it&apos;s a{" "}<strong className="text-[#6B1A1A] font-semibold">design movement</strong> where creativity, purpose, and mentorship converge.
+              At Dezine Acharya, Amit has built more than a coaching brand - it&apos;s a{" "}<strong className="text-[#6B1A1A] font-semibold">design movement</strong> where creativity, purpose, and mentorship converge.
             </p>
             <div className="flex gap-2 flex-wrap mb-8">
               {["NID Alumnus","12+ Yrs Mentoring","Philosophy-Driven"].map(t=>(
                 <span key={t} className="f-dm text-[.72rem] tracking-[.12em] uppercase bg-[#FDF6EC] text-[#6B1A1A] border border-[#C9922A]/35 px-4 py-2">{t}</span>
               ))}
             </div>
-            <div className="border-l-[3px] border-[#C9922A] bg-[#FDF6EC] px-6 py-5 space-y-2">
-              <p className="f-dm text-[.9rem] text-[#2A1A1A]">📍 <strong>Dwarka Centre, Delhi</strong> — Plot No. 101, First Floor Above Levi&apos;s Showroom, Sector 7, Dwarka - 110777</p>
-              <p className="f-dm text-[.9rem] text-[#2A1A1A]">
-                📞 <a href="tel:+918860615795" className="text-[#6B1A1A] font-semibold hover:underline">8860615795</a>
-                {" · "}✉️ <a href="mailto:info@dezineacharya.com" className="text-[#6B1A1A] font-semibold hover:underline">info@dezineacharya.com</a>
-              </p>
+            <div className="contact-panel px-6 py-5">
+              <div className="contact-row">
+                <span className="contact-ic"><MapPin size={14} /></span>
+                <p className="f-dm text-[.9rem] leading-relaxed text-[#2A1A1A]">
+                  <strong>Dwarka Centre, Delhi</strong> - Plot No. 101, First Floor Above Levi&apos;s Showroom, Sector 7, Dwarka - 110777
+                </p>
+              </div>
+              <div className="contact-row">
+                <span className="contact-ic"><Phone size={14} /></span>
+                <p className="f-dm text-[.9rem] leading-relaxed text-[#2A1A1A]">
+                  <a href="tel:+918860615795" className="contact-link">8860615795</a>
+                  {" - "}
+                  <a href="mailto:info@dezineacharya.com" className="contact-link">info@dezineacharya.com</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════ EXAMS ══════════ */}
+      {/* EXAMS */}
       <section id="exams" className="py-24 px-6 md:px-10 bg-[#FDF6EC]">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-16" data-aos="fade-up">
             <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-4">Entrance Exams</p>
             <h2 className="f-play font-bold text-4xl md:text-5xl text-[#4A0E0E] mb-5">We Prepare You For</h2>
-            <p className="f-dm text-[.97rem] text-[#8A6A5A] font-light max-w-md mx-auto leading-relaxed">India&apos;s most prestigious design &amp; architecture entrance examinations — approached not as a test, but as a creative milestone.</p>
+            <p className="f-dm text-[.97rem] text-[#8A6A5A] font-light max-w-md mx-auto leading-relaxed">India&apos;s most prestigious design &amp; architecture entrance examinations - approached not as a test, but as a creative milestone.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-0.5">
             {[
-              { code:"NID",  full:"National Institute of Design",                         icon:"◈", desc:"India's premier design institution. NID demands creative originality, design thinking and spatial reasoning.", featured:false },
-              { code:"NIFT", full:"National Institute of Fashion Technology",              icon:"◇", desc:"Fashion, textiles and design — NIFT CAT tests visual sensitivity, creative aptitude and situational judgment.", featured:true  },
-              { code:"UCEED",full:"Undergraduate Common Entrance Exam for Design",         icon:"◉", desc:"IIT design programs. UCEED evaluates visualization, environment & social awareness, and analytical reasoning.", featured:false },
-              { code:"NATA", full:"National Aptitude Test in Architecture",                icon:"◐", desc:"Gateway to top architecture colleges. NATA assesses drawing ability, aesthetic sensitivity, and critical thinking.", featured:false },
+              { code:"NID",  full:"National Institute of Design",                 icon: Palette,         desc:"India's premier design institution. NID demands creative originality, design thinking and spatial reasoning.", featured:false },
+              { code:"NIFT", full:"National Institute of Fashion Technology",      icon: Shirt,           desc:"Fashion, textiles and design - NIFT CAT tests visual sensitivity, creative aptitude and situational judgment.", featured:true  },
+              { code:"UCEED",full:"Undergraduate Common Entrance Exam for Design", icon: Lightbulb,       desc:"IIT design programs. UCEED evaluates visualization, environment and social awareness, and analytical reasoning.", featured:false },
+              { code:"NATA", full:"National Aptitude Test in Architecture",        icon: DraftingCompass, desc:"Gateway to top architecture colleges. NATA assesses drawing ability, aesthetic sensitivity, and critical thinking.", featured:false },
             ].map((exam,i)=>(
               <div
                 key={exam.code}
@@ -272,7 +325,7 @@ export default function Home() {
                 data-aos-delay={i*100}
                 className={`exam-card group p-10 cursor-default transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${exam.featured ? "bg-[#6B1A1A]" : "bg-white hover:bg-[#4A0E0E]"}`}
               >
-                <div className={`f-corm text-[2.2rem] mb-5 transition-all duration-300 ${exam.featured ? "text-[#E8B84B]" : "text-[#C9922A] opacity-60 group-hover:opacity-100 group-hover:text-[#E8B84B]"}`}>{exam.icon}</div>
+                <div className={`f-corm text-[2.2rem] mb-5 transition-all duration-300 ${exam.featured ? "text-[#E8B84B]" : "text-[#C9922A] opacity-60 group-hover:opacity-100 group-hover:text-[#E8B84B]"}`}><exam.icon size={34} strokeWidth={1.8} /></div>
                 <div className={`f-play font-bold text-[1.9rem] mb-2 transition-colors duration-300 ${exam.featured ? "text-[#E8B84B]" : "text-[#6B1A1A] group-hover:text-[#E8B84B]"}`}>{exam.code}</div>
                 <div className={`f-dm text-[.68rem] tracking-[.1em] uppercase mb-5 transition-colors duration-300 ${exam.featured ? "text-white/55" : "text-[#8A6A5A] group-hover:text-white/55"}`}>{exam.full}</div>
                 <p className={`f-dm text-[.9rem] leading-relaxed font-light transition-colors duration-300 ${exam.featured ? "text-white/82" : "text-[#8A6A5A] group-hover:text-white/80"}`}>{exam.desc}</p>
@@ -282,7 +335,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════ ABOUT ══════════ */}
+      {/* ABOUT */}
       <section id="about" className="py-24 px-6 md:px-10 bg-white">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20">
           {/* Problems */}
@@ -291,10 +344,10 @@ export default function Home() {
             <h2 className="f-play font-bold text-3xl md:text-[2.5rem] text-[#4A0E0E] mb-9">What&apos;s Broken in Design Coaching</h2>
             <div className="space-y-4">
               {[
-                "Coaching factories dominate — high fees, minimal mentorship.",
+                "Coaching factories dominate - high fees, minimal mentorship.",
                 "Students imitate instead of creating original work.",
                 "Real design thinking exposure is completely missing.",
-                `Emotional and career guidance is absent — reduced to \"draw and score.\"`,
+                `Emotional and career guidance is absent - reduced to \"draw and score.\"`,
               ].map((p,i)=>(
                 <div key={i} data-aos="fade-right" data-aos-delay={i*80} className="prob-card border-l-[3px] border-[#C9922A] bg-[#FDF6EC] pl-6 py-5">
                   <span className="f-corm text-[#C9922A] text-xl mr-3">{String(i+1).padStart(2,"0")}</span>
@@ -308,15 +361,15 @@ export default function Home() {
             <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-4">Our Solution</p>
             <h2 className="f-play font-bold text-3xl md:text-[2.5rem] text-[#4A0E0E] mb-9">The Dezine Acharya Difference</h2>
             {[
-              { icon:"◎", title:"Mentorship over Teaching",  desc:"Personalized creative guidance that sees the individual behind the aspirant." },
-              { icon:"◈", title:"Think, Don't Rote",         desc:"A curriculum built on design thinking, not repetitive practice drills." },
-              { icon:"◇", title:"Affordable & Flexible",     desc:"Breaking the cycle of commercial exploitation in coaching." },
-              { icon:"◉", title:"Community-Driven",          desc:"Peer feedback, shared growth, and continuous engagement across platforms." },
-              { icon:"◐", title:"Always Accessible",         desc:"YouTube, Instagram & live communities — design education without walls." },
+              { icon: Users, title:"Mentorship over Teaching", desc:"Personalized creative guidance that sees the individual behind the aspirant." },
+              { icon: Brain, title:"Think, Don't Rote", desc:"A curriculum built on design thinking, not repetitive practice drills." },
+              { icon: Wallet, title:"Affordable & Flexible", desc:"Breaking the cycle of commercial exploitation in coaching." },
+              { icon: Sparkles, title:"Community-Driven", desc:"Peer feedback, shared growth, and continuous engagement across platforms." },
+              { icon: Wifi, title:"Always Accessible", desc:"YouTube, Instagram and live communities - design education without walls." },
             ].map((s,i)=>(
               <div key={s.title} data-aos="fade-up" data-aos-delay={i*80}
                 className={`sol-row flex items-start gap-4 py-5 px-3 -mx-3 ${i<4?"border-b border-[#f0e8e0]":""}`}>
-                <span className="sol-icon text-[#C9922A] text-2xl shrink-0 mt-0.5">{s.icon}</span>
+                <span className="sol-icon text-[#C9922A] text-2xl shrink-0 mt-0.5"><s.icon size={22} strokeWidth={2} /></span>
                 <div>
                   <div className="f-dm font-semibold text-[.93rem] text-[#6B1A1A] mb-1">{s.title}</div>
                   <div className="f-dm text-[.88rem] text-[#8A6A5A] leading-relaxed font-light">{s.desc}</div>
@@ -327,14 +380,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════ MISSION ══════════ */}
+      {/* MISSION */}
       <section id="approach" className="py-24 px-6 md:px-10 relative overflow-hidden bg-gradient-to-br from-[#4A0E0E] to-[#6B1A1A]">
         <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full border border-[#C9922A]/12 pointer-events-none float-anim" style={{animationDelay:"1s"}}/>
         <div className="absolute -bottom-16 left-[8%] w-64 h-64 rounded-full border border-[#C9922A]/8 pointer-events-none"/>
         <div className="max-w-[900px] mx-auto text-center relative z-10" data-aos="zoom-in" data-aos-duration="900">
           <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#E8B84B] opacity-85 mb-6">Our Mission</p>
           <blockquote className="f-corm font-light italic text-4xl md:text-[3rem] text-white/90 leading-relaxed mb-12">
-            &ldquo;To guide one lakh design aspirants across India through a human-centered, experience-driven learning model — where design is{" "}
+            &ldquo;To guide one lakh design aspirants across India through a human-centered, experience-driven learning model - where design is{" "}
             <em className="text-[#E8B84B] not-italic">discovered</em>, not drilled.&rdquo;
           </blockquote>
           <div className="flex justify-center gap-4 flex-wrap" data-aos="fade-up" data-aos-delay="200">
@@ -350,7 +403,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════ PARENTS LETTER ══════════ */}
+      {/* PARENTS LETTER */}
       <section id="parents" className="py-24 px-6 md:px-10 bg-[#FDF6EC]">
         <div className="text-center mb-14" data-aos="fade-up">
           <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-4">A Message for Parents</p>
@@ -366,14 +419,27 @@ export default function Home() {
             <p className="f-dm text-[1rem] font-medium text-[#2A1A1A] mb-6">Dear Parents,</p>
             <div className="space-y-5 f-dm text-[.95rem] leading-[1.95] text-[#2A1A1A] font-light">
               <p>If your child aspires to build a career in <strong className="font-bold">Fashion, Design, or Architecture</strong>, choosing the right direction after school can often feel confusing and overwhelming.</p>
-              <p>At <strong className="font-bold">Dezine Acharya</strong>, we provide expert mentorship and career guidance for premier institutes such as <strong className="font-bold">NID, NIFT, UCEED, NATA</strong>, and leading architecture &amp; design colleges. Our approach goes beyond coaching — we help students discover their strengths, nurture creativity, and make confident career decisions aligned with their true potential.</p>
+              <p>At <strong className="font-bold">Dezine Acharya</strong>, we provide expert mentorship and career guidance for premier institutes such as <strong className="font-bold">NID, NIFT, UCEED, NATA</strong>, and leading architecture and design colleges. Our approach goes beyond coaching - we help students discover their strengths, nurture creativity, and make confident career decisions aligned with their true potential.</p>
               <p>We understand that every parent wants clarity, security, and the right future for their child. With <strong className="font-bold">personalised mentorship</strong> and <strong className="font-bold">professional guidance</strong>, we ensure students move forward with confidence, clarity, and purpose.</p>
               <p>We warmly invite you to visit our <strong className="font-bold">Dwarka Centre</strong> for a personal consultation and experience our mentorship approach firsthand.</p>
             </div>
-            <div className="mt-9 space-y-2 f-dm text-[.93rem] text-[#2A1A1A]">
-              <p>📍 Dwarka Centre, Delhi</p>
-              <p>📞 Call to schedule a consultation: <a href="tel:+918860615795" className="text-[#6B1A1A] font-bold hover:underline">8860615795</a></p>
-              <p>✉️ <a href="mailto:info@dezineacharya.com" className="text-[#6B1A1A] font-bold hover:underline">info@dezineacharya.com</a></p>
+            <div className="contact-panel mt-9 px-6 py-5">
+              <div className="contact-row">
+                <span className="contact-ic"><MapPin size={14} /></span>
+                <p className="f-dm text-[.93rem] text-[#2A1A1A]">Dwarka Centre, Delhi</p>
+              </div>
+              <div className="contact-row">
+                <span className="contact-ic"><Phone size={14} /></span>
+                <p className="f-dm text-[.93rem] text-[#2A1A1A]">
+                  Call to schedule a consultation: <a href="tel:+918860615795" className="contact-link">8860615795</a>
+                </p>
+              </div>
+              <div className="contact-row">
+                <span className="contact-ic"><Mail size={14} /></span>
+                <p className="f-dm text-[.93rem] text-[#2A1A1A]">
+                  <a href="mailto:info@dezineacharya.com" className="contact-link">info@dezineacharya.com</a>
+                </p>
+              </div>
             </div>
             <hr className="letter-rule mt-10 mb-4"/>
             <p className="f-dm text-[.78rem] text-[#8A6A5A] text-center">Plot No. 101, First Floor Above Levi&apos;s Showroom, Sector 7, Dwarka, Delhi - 110777</p>
@@ -381,7 +447,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════ TESTIMONIALS ══════════ */}
+      {/* TESTIMONIALS */}
       <section id="community" className="py-24 px-6 md:px-10 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-16" data-aos="fade-up">
@@ -390,7 +456,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name:"Aanya Sharma", exam:"NID Aspirant",    text:"Dezine Acharya changed how I see design. It's not a coaching factory — it's a space where you actually learn to think." },
+              { name:"Aanya Sharma", exam:"NID Aspirant",    text:"Dezine Acharya changed how I see design. It's not a coaching factory - it's a space where you actually learn to think." },
               { name:"Rohan Mehta",  exam:"UCEED Qualifier", text:"The mentorship here is personal and real. They pushed my creative limits while making sure I stayed true to my own vision." },
               { name:"Priya Nair",   exam:"NIFT Aspirant",   text:"The community aspect is incredible. Getting peer feedback and learning together made the whole journey less lonely and more inspiring." },
             ].map((t,i)=>(
@@ -407,12 +473,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════ CTA / CONTACT ══════════ */}
+      {/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â CTA / CONTACT Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */}
       <section id="contact" className="py-24 px-6 md:px-10 bg-[#FDF6EC] text-center">
         <div className="max-w-[700px] mx-auto" data-aos="fade-up">
           <div className="flex items-center gap-4 justify-center mb-9">
             <div className="flex-1 max-w-[120px] h-px bg-gradient-to-r from-transparent to-[#C9922A]"/>
-            <span className="f-corm text-[#C9922A] text-2xl">◈</span>
+            <span className="f-corm text-[#C9922A] text-2xl"><Sparkles size={20} /></span>
             <div className="flex-1 max-w-[120px] h-px bg-gradient-to-l from-transparent to-[#C9922A]"/>
           </div>
           <h2 className="f-play font-bold text-4xl md:text-5xl text-[#4A0E0E] mb-6">Ready to Begin Your Design Journey?</h2>
@@ -435,15 +501,24 @@ export default function Home() {
               YouTube
             </a>
           </div>
-          <div className="bg-white border-l-[3px] border-[#C9922A] px-8 py-6 text-left max-w-[420px] mx-auto space-y-2" data-aos="fade-up" data-aos-delay="250">
-            <a href="tel:+918860615795" className="block f-dm text-[.93rem] text-[#6B1A1A] font-semibold hover:underline">📞 8860615795</a>
-            <a href="mailto:info@dezineacharya.com" className="block f-dm text-[.93rem] text-[#6B1A1A] font-semibold hover:underline">✉️ info@dezineacharya.com</a>
-            <span className="block f-dm text-[.88rem] text-[#8A6A5A] font-light">📍 Plot No. 101, First Floor Above Levi&apos;s Showroom, Sector 7, Dwarka, Delhi - 110777</span>
+          <div className="contact-panel px-8 py-6 text-left max-w-[460px] mx-auto" data-aos="fade-up" data-aos-delay="250">
+            <div className="contact-row">
+              <span className="contact-ic"><Phone size={14} /></span>
+              <a href="tel:+918860615795" className="f-dm text-[.93rem] contact-link">8860615795</a>
+            </div>
+            <div className="contact-row">
+              <span className="contact-ic"><Mail size={14} /></span>
+              <a href="mailto:info@dezineacharya.com" className="f-dm text-[.93rem] contact-link">info@dezineacharya.com</a>
+            </div>
+            <div className="contact-row">
+              <span className="contact-ic"><MapPin size={14} /></span>
+              <span className="f-dm text-[.88rem] text-[#8A6A5A] leading-relaxed font-light">Plot No. 101, First Floor Above Levi&apos;s Showroom, Sector 7, Dwarka, Delhi - 110777</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════ FOOTER ══════════ */}
+      {/* FOOTER */}
       <footer className="bg-[#3A0A0A] text-white pt-16 pb-8 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="shimmer-bar h-[2px] w-full rounded-full mb-14 opacity-60"/>
@@ -452,7 +527,7 @@ export default function Home() {
             <div data-aos="fade-up" data-aos-delay="0">
               <Image src="/logo-new.webp" alt="Dezine Acharya" width={140} height={44} className="w-[100px] w-auto object-contain mb-5 brightness-0 invert opacity-90"/>
               <p className="f-dm text-[.88rem] leading-[1.9] text-white/65 font-light max-w-[290px] mb-6">
-                An experiential learning platform mentoring students for NID, NIFT, UCEED &amp; NATA — where design is discovered, not drilled.
+                An experiential learning platform mentoring students for NID, NIFT, UCEED and NATA - where design is discovered, not drilled.
               </p>
               <div className="flex gap-3 flex-wrap">
                 <a href="https://www.instagram.com/dezine_acharya" target="_blank" rel="noopener noreferrer"
@@ -485,7 +560,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-white/10 pt-6 flex flex-wrap justify-between items-center gap-3">
-            <span className="f-dm text-[.76rem] text-white/45 font-light">© 2025 Dezine Acharya. All rights reserved.</span>
+            <span className="f-dm text-[.76rem] text-white/45 font-light">Copyright 2025 Dezine Acharya. All rights reserved.</span>
             <span className="f-corm italic text-[.95rem] text-[#C9922A] opacity-80">Design is discovered, not drilled.</span>
           </div>
         </div>
