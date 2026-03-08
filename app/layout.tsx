@@ -74,8 +74,8 @@ export const metadata: Metadata = {
     images: ["/logo.webp"],
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/favicon/favicon.ico",
+    apple: "/favicon/apple-icon.png",
   },
   robots: {
     index: true,
