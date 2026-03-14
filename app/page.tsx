@@ -65,7 +65,7 @@ export default function Home() {
         rafId = requestAnimationFrame(tick);
         observer.disconnect();
       },
-      { threshold: 0.35 },
+      { threshold: 0.15 },
     );
     observer.observe(target);
     return () => {
@@ -83,7 +83,7 @@ export default function Home() {
     script.src = "https://unpkg.com/aos@2.3.4/dist/aos.js";
     script.onload = () => {
       (window as Window & { AOS?: { init: (c: object) => void } }).AOS?.init({
-        duration: 550,
+        duration: 200,
         easing: "ease-out-cubic",
         offset: 10,
         once: false,
@@ -210,7 +210,7 @@ export default function Home() {
 
       {/* Navbar */}
       <nav
-        className={`fixed top-3 left-4 right-4 z-50 h-[60px] md:h-[68px] flex items-center justify-between px-6 md:px-10 bg-white/95 backdrop-blur-md border-[#f0e0d0] rounded-xl transition-all duration-300 ${scrolled ? "shadow-lg" : "shadow-[0_4px_20px_rgba(0,0,0,0.25)]"}`}
+        className={`fixed top-3 left-4 right-4 z-50 h-[60px] md:h-[68px] flex items-center justify-between px-4 md:px-10 bg-white/95 backdrop-blur-md border-[#f0e0d0] rounded-xl transition-all duration-300 ${scrolled ? "shadow-lg" : "shadow-[0_4px_20px_rgba(0,0,0,0.25)]"}`}
       >
         <a href="#hero">
           <Image
@@ -218,7 +218,7 @@ export default function Home() {
             alt="Dezine Acharya"
             width={90}
             height={44}
-            className="w-[100px] md:w-[120px] object-contain"
+            className="w-[130px] relative top-1 object-contain"
             priority
           />
         </a>
@@ -307,7 +307,7 @@ export default function Home() {
         <div
           className="absolute left-[6%] bottom-[20%] w-12 h-12 border border-[#C9922A]/15 rotate-45 pointer-events-none"
           data-aos="fade-in"
-          data-aos-delay="900"
+          data-aos-delay="500"
         />
 
         <div className="max-w-[1200px] mx-auto px-4 md:px-10 py-20 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 items-center w-full relative z-10">
@@ -474,7 +474,10 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════ COURSES ═══════════════════════════════ */}
-      <section id="courses" className="py-24 px-6 md:px-10 bg-[#FDF6EC]">
+      <section
+        id="courses"
+        className="py-20 md:py-24 px-4 md:px-10 bg-[#FDF6EC]"
+      >
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-16" data-aos="fade-up">
             <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-4">
@@ -493,7 +496,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Design Stream */}
             <div
-              className="cat-card bg-white border border-[#f0e0d0] p-10 flex flex-col"
+              className="cat-card bg-white border border-[#f0e0d0] p-4 md:p-10 flex flex-col"
               data-aos="fade-up"
               data-aos-delay="0"
             >
@@ -556,15 +559,10 @@ export default function Home() {
 
             {/* Fashion Stream — featured */}
             <div
-              className="cat-card course-card bg-[#6B1A1A] border border-[#6B1A1A] p-10 flex flex-col relative"
+              className="cat-card course-card bg-[#6B1A1A] border border-[#6B1A1A] p-4 md:p-10 flex flex-col relative"
               data-aos="fade-up"
               data-aos-delay="120"
             >
-              {/* <div className="absolute top-6 right-6">
-                <span className="f-dm text-[.62rem] tracking-[.18em] uppercase bg-[#C9922A] text-[#4A0E0E] font-bold px-3 py-1">
-                  Most Popular
-                </span>
-              </div> */}
               <div className="w-14 h-14 rounded-full bg-[#4A0E0E] border border-[#C9922A]/40 flex items-center justify-center mb-7">
                 <Shirt size={26} strokeWidth={1.8} className="text-[#E8B84B]" />
               </div>
@@ -612,7 +610,7 @@ export default function Home() {
 
             {/* Architecture Stream */}
             <div
-              className="cat-card bg-white border border-[#f0e0d0] p-10 flex flex-col"
+              className="cat-card bg-white border border-[#f0e0d0] p-4 md:p-10 flex flex-col"
               data-aos="fade-up"
               data-aos-delay="240"
             >
@@ -842,7 +840,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════ TEAM ═══════════════════════════════ */}
-      <section id="team" className="py-24 px-6 md:px-10 bg-white">
+      <section id="team" className="py-20 md:py-24 px-3 md:px-10 bg-white">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-16" data-aos="fade-up">
             <p className="f-dm text-[.72rem] tracking-[.32em] uppercase text-[#C9922A] font-medium mb-4">
@@ -876,7 +874,7 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-              <div className="p-10 md:p-12 flex flex-col justify-center">
+              <div className="p-5 md:p-12 flex flex-col justify-center">
                 <p className="f-dm text-[.68rem] tracking-[.3em] uppercase text-[#C9922A] opacity-80 mb-4">
                   Founder &amp; Lead Mentor
                 </p>
@@ -1007,40 +1005,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          {/* Contact strip */}
-          {/* <div
-            className="mt-10 contact-panel px-7 py-5 max-w-[600px]"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div className="contact-row">
-              <span className="contact-ic">
-                <MapPin size={14} />
-              </span>
-              <p className="f-dm text-[.9rem] leading-relaxed text-[#2A1A1A]">
-                <strong>Dwarka Centre, Delhi</strong> — Plot No. 101, First
-                Floor Above Levi&apos;s Showroom, Sector 7, Dwarka - 110777
-              </p>
-            </div>
-            <div className="contact-row">
-              <span className="contact-ic">
-                <Phone size={14} />
-              </span>
-              <p className="f-dm text-[.9rem] leading-relaxed text-[#2A1A1A]">
-                <a href="tel:+918860615795" className="contact-link">
-                  8860615795
-                </a>
-                {" — "}
-                <a
-                  href="mailto:info@dezineacharya.com"
-                  className="contact-link"
-                >
-                  info@dezineacharya.com
-                </a>
-              </p>
-            </div>
-          </div> */}
         </div>
       </section>
 
@@ -1060,7 +1024,7 @@ export default function Home() {
           data-aos-delay="150"
           data-aos-duration="900"
         >
-          <div className="bg-white border border-[#f0e0d0] shadow-[0_8px_48px_rgba(0,0,0,.07)] px-5 md:px-16 py-12">
+          <div className="bg-white border border-[#f0e0d0] shadow-[0_8px_48px_rgba(0,0,0,.07)] px-4 md:px-16 py-12">
             <div className="flex justify-between items-start mb-2">
               <Image
                 src="/logo-new.webp"
@@ -1315,19 +1279,19 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════ FOOTER ═══════════════════════════════ */}
-      <footer className="bg-[#3A0A0A] text-white pt-16 pb-8 px-6 md:px-10">
+      <footer className="bg-[#3A0A0A] text-white pt-16 pb-8 px-3 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="shimmer-bar h-[2px] w-full rounded-full mb-14 opacity-60" />
           <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 md:gap-10 mb-14">
             {/* Brand */}
             <div data-aos="fade-up" data-aos-delay="0">
-              <div className="bg-white/20 rounded w-max p-2">
+              <div className="bg-linear-to-r from-white to-white/20 rounded w-full p-2">
                 <Image
                   src="/logo-new.webp"
                   alt="Dezine Acharya"
                   width={140}
                   height={44}
-                  className="w-[170px] h-[75px] scale-[1.6] object-contain "
+                  className="relative top-1 w-[170px] h-[75px] scale-[1.6] object-contain "
                 />
               </div>
               <p className="f-dm text-[.88rem] leading-[1.9] text-white/65 font-light max-w-[290px] mb-6">
