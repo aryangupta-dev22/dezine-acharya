@@ -27,7 +27,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title:
-    "Dezine Acharya – Design Education Redefined | NID, NIFT, UCEED & NATA",
+    "Dezine Acharya - Design Education Redefined | NID, NIFT, UCEED & NATA",
   description:
     "Dezine Acharya mentors design aspirants for NID, NIFT, UCEED & NATA through creative intuition, structured guidance and reflective mentorship. Based in Dwarka, Delhi. Join the design movement.",
   keywords: [
@@ -50,17 +50,17 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Dezine Acharya – Where Design is Discovered, Not Drilled",
+    title: "Dezine Acharya - Where Design is Discovered, Not Drilled",
     description:
       "Expert mentorship for NID, NIFT, UCEED & NATA. A human-centered, experience-driven learning model by NID alumnus Amit Singh. Dwarka Centre, Delhi.",
     url: "https://www.dezineacharya.com",
     siteName: "Dezine Acharya",
     images: [
       {
-        url: "/logo.webp",
+        url: "https://www.dezineacharya.com/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Dezine Acharya – Design Education Redefined",
+        alt: "Dezine Acharya logo and social share card",
       },
     ],
     locale: "en_IN",
@@ -68,10 +68,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dezine Acharya – Design Education Redefined",
+    title: "Dezine Acharya - Design Education Redefined",
     description:
       "Mentoring aspirants for NID, NIFT, UCEED & NATA through creative intuition and reflective mentorship.",
-    images: ["/logo.webp"],
+    images: ["https://www.dezineacharya.com/opengraph-image.png"],
   },
   icons: {
     icon: "/favicon/favicon.ico",
